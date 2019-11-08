@@ -6,12 +6,13 @@ public class Indice {
 
     FileWriter archivoIndice;
     FileReader archInd;
-    String nombre = "indice.bin";
+    //String nombre = "/src/files/indiceN.bin";
+    private final String FILE_NAME = System.getProperty("user.dir") + "/src/files/indiceN.bin";
     Arbol ar = new Arbol();
     int direccion;
 
     public void Insercion(int llave, int tamanioArch) throws IOException {
-        archivoIndice = new FileWriter(nombre, true); //ABRIR O CREAR ARCHIVO INDICE
+        archivoIndice = new FileWriter(FILE_NAME, true); //ABRIR O CREAR ARCHIVO INDICE
         PrintWriter archIndice = new PrintWriter(archivoIndice); //ESCRIBIR EN ARCHIVO INDICE
         archIndice.write("" + llave + '_' + tamanioArch + '\n');//ESCRIBIR LLAVE_DIRECCION
         String sentencia = "" + llave + '_' + tamanioArch;//SENTENCIA A SER USADA PARA SEPARAR
@@ -19,13 +20,13 @@ public class Indice {
         Separar(sentencia);
         archivoIndice.close();
         archIndice.close();
-        float tam = new File("indice.txt").length();
+        float tam = new File("indiceN.bin").length();
         //System.out.println(tam);
         ar.nuevo(llave, tamanioArch);
     }
 
     public int Recuperacion(int llave) throws IOException {
-        archInd = new FileReader(nombre); //LEER DEL ARCHIVO INDICE
+        archInd = new FileReader(FILE_NAME); //LEER DEL ARCHIVO INDICE
         //MANDAR A LLAMAR A BUSQUEDA DE ARBOL PARA TENER LA DIRECCION
         direccion = ar.buscar(llave);
         archInd.close();
@@ -48,10 +49,10 @@ public class Indice {
 
     public void Mantenimiento() throws IOException {
         String oracion = ar.ordenar();
-        BufferedWriter bw = new BufferedWriter(new FileWriter(nombre));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME));
         bw.write("");
         bw.close();
-        archivoIndice = new FileWriter(nombre, true); //ABRIR O CREAR ARCHIVO INDICE
+        archivoIndice = new FileWriter(FILE_NAME, true); //ABRIR O CREAR ARCHIVO INDICE
         PrintWriter archIndice = new PrintWriter(archivoIndice);
         String[] llenar = oracion.split(",");
         for (int i = 0; i < llenar.length; i++) {
@@ -67,7 +68,7 @@ public class Indice {
     }
 
     public int llaveMasGrande() throws IOException {
-        archInd = new FileReader(nombre);
+        archInd = new FileReader(FILE_NAME);
 
         char[] chars = new char[300];
         archInd.read(chars);
@@ -84,7 +85,7 @@ public class Indice {
     }
 
     public void construirArbol() throws IOException {
-        archInd = new FileReader(nombre);
+        archInd = new FileReader(FILE_NAME);
 
         char[] chars = new char[300];
         archInd.read(chars);

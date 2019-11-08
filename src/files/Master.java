@@ -12,9 +12,9 @@ import java.util.List;
 public class Master {
     private RandomAccessFile file;
     private final int CHAR_LENGTH = 55;
-    private final int NUMBER_OF_FIELDS = 23;
+    private final int NUMBER_OF_FIELDS = 10;
     private final int LENGTH = 2 + (CHAR_LENGTH * NUMBER_OF_FIELDS * 2);
-    private final String FILE_NAME = System.getProperty("user.dir") + "/src/files/master.bin";
+    private final String FILE_NAME = System.getProperty("user.dir") + "/src/files/masterN.bin";
 
     /**
      * Almacenamiento de un nuevo registro al final del archivo maestro

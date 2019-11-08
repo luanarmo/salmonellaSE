@@ -62,8 +62,8 @@ public class Controller implements Initializable {
     }
 
     private void addColums() {
-        for (int i = 1; i <= 23; i++) {
-            if (i < 23) {
+        for (int i = 1; i <= 10; i++) {
+            if (i < 10) {
                 TableColumn column = new TableColumn<String[], String>("C" + i);
                 tvPremisas.getColumns().add(column);
                 columns.add(column);
@@ -73,7 +73,7 @@ public class Controller implements Initializable {
                 columns.add(column);
             }
         }
-        for (int u = 0; u < 23; u++) {
+        for (int u = 0; u < 10; u++) {
             int finalU = u;
             columns.get(u).setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String[], String>, ObservableValue<String>>() {
                 @Override
@@ -102,7 +102,7 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String[][] data = new String[registries.size()][23];
+        String[][] data = new String[registries.size()][10];
         for (int i = 0; i < registries.size(); i++) {
             data[i] = registries.get(i).getRecords();
         }
