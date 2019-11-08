@@ -30,7 +30,8 @@
         <VBox  alignment="CENTER" spacing="15" >
             <Label text="Base de hechos"/>
             <TextArea fx:id="txBaseHechos" promptText="Hechos"/>
-            <Button text="Procesar" fx:id="btnProcesar"/>
+            <TextArea fx:id="txDominios" promptText="Dominios"/>
+            <Button text="Inferencia" fx:id="btnInferencia"/>
         </VBox>
     </HBox>
 

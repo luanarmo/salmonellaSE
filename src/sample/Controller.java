@@ -1,9 +1,7 @@
 package sample;
 
 
-import files.Indice;
-import files.Master;
-import files.Registry;
+import files.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -13,16 +11,15 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable {
+    public TextArea txBaseHechos;
+    public TextArea txDominios;
     @FXML
     TableView<String[]> tvPremisas;
     @FXML
-    Button btnAdd, btnSearch, btnDelete, btnAll, btnUpdate;
+    Button btnAdd, btnSearch, btnDelete, btnAll, btnUpdate, btnInferencia;
     @FXML
     TextField taAdd, taSearch, taDelete, taUpdateKey, taUpdateVal;
     ContextMenu menuOculto;
@@ -59,6 +56,7 @@ public class Controller implements Initializable {
         }
         addColums();
         tvPremisas.getItems().addAll(Arrays.asList(getData()));
+        btnInferencia.setOnAction(e -> inferencia());
     }
 
     private void addColums() {
@@ -191,5 +189,49 @@ public class Controller implements Initializable {
         refresh();
         taUpdateKey.clear();
         taUpdateVal.clear();
+    }
+
+    private void inferencia() {
+        List<String> reglas = new ArrayList<>();
+        for (String[] x : getData()) {
+            String aux = "";
+            for (int i = 0; i < x.length; i++) {
+                if (i == x.length - 1)
+                    aux = aux.substring(0, aux.length() - 1) + ">" + x[i];
+                else if (x[i].trim().length() != 0)
+                    aux += x[i] + "&";
+
+            }
+            reglas.add(aux);
+        }
+
+        List<String> hechos = new ArrayList<>();
+        for (String hecho : txBaseHechos.getText().split("\n"))
+            hechos.add(hecho);
+
+
+        Map<String, List<String>> dominios = new HashMap<>();
+        for (String dominio : txDominios.getText().split("\n")) {
+            String[] partes = dominio.split(":");
+            String[] vars = partes[1].split(",");
+
+            dominios.put(partes[0], Arrays.asList(vars));
+        }
+
+
+        Encadenamiento encadenamiento = new Encadenamiento(reglas, hechos, dominios);
+
+        encadenamiento.inferencia();
+        BaseHechos bh = encadenamiento.getBh();
+
+        alertMessage(bh.getHechos().toString(), "Base de Hechos", Alert.AlertType.INFORMATION, "Informacion");
+    }
+
+    void alertMessage(String mensaje, String titulo, Alert.AlertType type, String header) {
+        Alert alert = new Alert(type);
+        alert.setTitle(titulo);
+        alert.setHeaderText(header);
+        alert.setContentText(mensaje);
+        alert.show();
     }
 }

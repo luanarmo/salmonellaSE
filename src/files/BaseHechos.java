@@ -64,5 +64,8 @@ public class BaseHechos {
         this.hechos.addAll(hechos);
     }
 
-
+    public void setDominios(Map<String,List<String>> dominios)
+    {
+        this.dominios = dominios;
+    }
 }
