@@ -24,8 +24,16 @@
 
         <Button fx:id="btnAll" text="Mostrar Todo"/>
     </HBox>
-    <HBox GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="3" spacing="5" alignment="CENTER">
-        <TableView fx:id="tvPremisas"  />
+    <HBox GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="5" spacing="5" alignment="CENTER">
+        <TableView fx:id="tvPremisas" />
+    <HBox GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="10" spacing="15" alignment="CENTER">
+        <VBox  alignment="CENTER" spacing="15" >
+            <Label text="Base de hechos"/>
+            <TextArea fx:id="txBaseHechos" promptText="Hechos"/>
+            <Button text="Procesar" fx:id="btnProcesar"/>
+        </VBox>
+    </HBox>
+
     </HBox>
 
     <HBox GridPane.rowIndex="2" GridPane.columnIndex="0" alignment="CENTER" spacing="10">

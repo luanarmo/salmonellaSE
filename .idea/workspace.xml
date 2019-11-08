@@ -88,6 +88,15 @@
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Descargas\salmonellaSE-master\src\files" />
+      <recent name="D:\Descargas\salmonellaSE-master" />
+      <recent name="D:\Descargas\salmonellaSE-master\src" />
+      <recent name="D:\Descargas\salmonellaSE-master\.idea" />
+      <recent name="D:\Descargas\salmonellaSE-master\out" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
